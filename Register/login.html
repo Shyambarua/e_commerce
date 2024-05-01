@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+        body{
+            background: url(/e-commerce/assets/hero.png);
+            display: flex;
+            justify-content: center;
+            
+        }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 10px;
+        width: 400px;
+        height:600px;
+      }
+      .container h1{
+        color: white;
+        font-size: 40px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      label {
+        font-size: 20px;
+        font-weight: 550;
+        color: white;
+        display: flex;
+        /* justify-content: center; */
+      }
+
+      input {
+        /* border: 2px solid gray; */
+        border: none;
+        font-size: 20px;
+        border-radius: 15px;
+        padding: 10px;
+      }
+      .btn {
+        font-size: 30px;
+        color: white;
+        background-color: transparent;
+        padding: 5px 5px;
+        border: 2px solid gray;
+        margin-top: 20px;
+        border-radius: 15px;
+      }
+      .btn:hover{
+        cursor: pointer;
+        transform: translate(1.5px);
+        box-shadow: 0 0 20px 2px blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign In</h1>
+      <form action="/login" method="post">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter Your mail id"
+          required
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Your Password"
+          required
+        />
+        
+        <button class="btn" type="submit">Sign In</button>
+      </form>
+      <p style="color: white;">New TO Buyzy?  <a href="register.html" style="color: black;">Sign Up</a></p>
+    </div>
+  </body>
+</html>

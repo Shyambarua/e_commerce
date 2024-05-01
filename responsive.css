@@ -1,0 +1,36 @@
+@media screen and (max-width: 768px) {
+    .navbar a,.dropdown.dropbtn {
+         font-size: 15px;
+     }
+    .dropdown-content {
+         padding: 0 20px;
+     }
+    .row {
+         padding: 10px 20px;
+     }
+    .column a {
+         font-size: 15px;
+     }
+    .bottom-nav h2,.bottom-nav a {
+         font-size: 15px;
+     }
+    .bottom-nav p {
+         font-size: 12px;
+     }
+    .feature img {
+         height: 200px;
+         width: 150px;
+     }
+    .box.btn-gr {
+         flex-direction: column;
+     }
+    .left-foot {
+         width: 100%;
+     }
+    .foot-link-top {
+         gap: 50px;
+     }
+    .foot-link-bottom a.bx {
+         font-size: 30px;
+     }
+ }
