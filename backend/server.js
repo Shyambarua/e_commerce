@@ -17,16 +17,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-// const port = 5000;
+const port = 5000;
 
 
 
 
 // 3. Connect to the database
 connectDb().then(() => {
-    // app.listen(port, () => {
-    //     console.log(`server is running at port: ${port}`)
-    //   });
+    app.listen(port, () => {
+        console.log(`server is running at port: ${port}`)
+      });
  console.log(`server is running at port: ${port}`)
  
 });
