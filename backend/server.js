@@ -10,7 +10,7 @@ const cors = require("cors");
 // 1. Middleware this line of code is used to parse the data from the body of the request
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "e-commerce-orpin-one.vercel.app",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
