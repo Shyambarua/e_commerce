@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import logo from '../assets/logo1.png'
+import LoginForm from "./LoginForm";
 
 
 const Navbar = () => {
@@ -13,7 +14,9 @@ const Navbar = () => {
         <div className="main-link">
           <a href="">Find a Store</a> |<a href="">Help</a> |
           <a href="Register/register.html">Join Us</a> |
-          <a href="Register/login.html">Sign In</a>
+          <button className="text-[15px] ">
+            <LoginForm/>
+          </button>
         </div>
       </div>
 
