@@ -10,7 +10,7 @@ const cors = require("cors");
 // 1. Middleware this line of code is used to parse the data from the body of the request
 
 const corsOptions = {
-  origin: "e-commerce-1j5a.vercel.app",
+  origin: "http://localhost:5173",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
@@ -27,8 +27,6 @@ connectDb().then(() => {
     app.listen(port, () => {
         console.log(`server is running at port: ${port}`)
       });
- console.log(`server is running at port: ${port}`)
- 
 });
 
 // 2. Routes    

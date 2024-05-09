@@ -14,11 +14,24 @@ const LoginForm = () => {
   const handleOpenModal = () => setIsOpen(true);
   const handleCloseModal = () => setIsOpen(false);
 
+
+
+  const handleInput = (e) => {
+    console.log(e);
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(user);
     try {
-      const response = await fetch("e-commerce-orpin-one.vercel.app/register", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,16 +58,7 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleInput = (e) => {
-    console.log(e);
-    let name = e.target.name;
-    let value = e.target.value;
-
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+  
 
   return (
     <>
