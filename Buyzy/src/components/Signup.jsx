@@ -1,23 +1,21 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import Signup from "./Signup";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../store/auth";
+import LoginForm from "./LoginForm";
 
-const LoginForm = () => {
+const Signup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
+
   const handleOpenModal = () => setIsOpen(true);
   const handleCloseModal = () => setIsOpen(false);
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
 
-  const { saveTokenInLocalStr } = useAuth();
-
-  const navigate = useNavigate();
 
   const handleInput = (e) => {
     console.log(e);
@@ -34,23 +32,25 @@ const LoginForm = () => {
     event.preventDefault();
     console.log(user);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
+      console.log("response data : ", response);
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("after login: ", responseData);
-        // toast.success("Registration Successful");
-        saveTokenInLocalStr(responseData.token);
-        navigate("/");
+        alert("registration successful");
+        setUser({ username: "", email: "", phone: "", password: "" });
+        console.log(responseData);
+      } else {
+        console.log("error inside response ", "error");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error", error);
     }
     setIsOpen(false);
   };
@@ -67,14 +67,14 @@ const LoginForm = () => {
         onClick={handleOpenModal}
         className=" text-[15px] hover:text-[blue] hover:drop-shadow-[0_20px_20px_rgba(0,0,255)] hover:underline"
       >
-        Login
+        Register
       </button>
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-80 overflow-y-auto h-full w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
           <div className="bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex justify-between items-center p-5 rounded-t  dark:border-gray-600">
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                Login
+                Register
               </h3>
               <button
                 type="button"
@@ -99,6 +99,40 @@ const LoginForm = () => {
               onSubmit={handleSubmit}
               className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
             >
+              <div className=" text-start">
+                <label className="text-sm text-black mb-2 block">
+                  User name
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="username"
+                    type="text"
+                    required
+                    value={user.username}
+                    onChange={handleInput}
+                    className="w-full text-black text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
+                    placeholder="Enter user name"
+                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#bbb"
+                    stroke="#bbb"
+                    className="w-[18px] h-[18px] absolute right-2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      cx="10"
+                      cy="7"
+                      r="6"
+                      data-original="#000000"
+                    ></circle>
+                    <path
+                      d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                      data-original="#000000"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
 
               <div className=" text-start">
                 <label className="text-sm text-black mb-2 block">Email</label>
@@ -147,6 +181,39 @@ const LoginForm = () => {
                 </div>
               </div>
 
+              <div className=" text-start text-sm text-black mb-2 block">
+                <label
+                  htmlFor="phone"
+                  className="text-sm text-black mb-2 block"
+                >
+                  Phone
+                </label>
+                <div className="relative flex items-center">
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  required
+                  value={user.phone}
+                  onChange={handleInput}
+                  className="w-full text-black  text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
+                  placeholder="Enter Phone"
+                />
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  fill="#bbb"
+                  stroke="#bbb"
+                  className="w-[18px] h-[18px] absolute right-2 Icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  height="1em"
+                >
+                  <path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z" />
+                </svg>
+                </div>
+              </div>
 
               <div className="relative items-center text-start">
                 <label className="text-sm text-black mb-2 block">
@@ -206,11 +273,11 @@ const LoginForm = () => {
                 type="submit"
                 className="w-full text-white bg-orange-500 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Sign In
+                Sign Up
               </button>
               <p className="text-sm text-black !mt-10 text-center">
-                New To Buyzy?{" "}
-                <Signup onChange={handleCloseModal}/>
+                Already have an account?{" "}
+                <LoginForm onChange={handleCloseModal}/>
               </p>
             </form>
           </div>
@@ -220,4 +287,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Signup;

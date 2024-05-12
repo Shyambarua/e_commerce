@@ -4,6 +4,7 @@ import { BsCart3 } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import logo from '../assets/logo1.png'
 import LoginForm from "./LoginForm";
+import Signup from "./Signup";
 
 
 const Navbar = () => {
@@ -13,7 +14,9 @@ const Navbar = () => {
         <a href="">Buyzy</a>
         <div className="main-link">
           <a href="">Find a Store</a> |<a href="">Help</a> |
-          <a href="Register/register.html">Join Us</a> |
+          <button className="text-[15px] ">
+            <Signup/>
+          </button> | 
           <button className="text-[15px] ">
             <LoginForm/>
           </button>
