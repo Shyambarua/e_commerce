@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../program/realblog"
+		},
+		{
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "project"
+	}
+}

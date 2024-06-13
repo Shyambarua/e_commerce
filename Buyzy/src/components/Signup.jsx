@@ -63,10 +63,7 @@ const Signup = () => {
 
   return (
     <>
-      <button
-        onClick={handleOpenModal}
-        className=" text-[15px] hover:text-[blue] hover:drop-shadow-[0_20px_20px_rgba(0,0,255)] hover:underline"
-      >
+      <button onClick={handleOpenModal} className=" text-[15px] hover:text-[blue] hover:drop-shadow-[0_20px_20px_rgba(0,0,255)] hover:underline">
         Register
       </button>
       {isOpen && (
