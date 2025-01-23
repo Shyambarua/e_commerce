@@ -16,7 +16,6 @@ const Signup = () => {
   const handleCloseModal = () => setIsOpen(false);
 
 
-
   const handleInput = (e) => {
     console.log(e);
     let name = e.target.name;

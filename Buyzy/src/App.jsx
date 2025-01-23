@@ -1,24 +1,20 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import './App.css'
-import Home from './pages/Home'
-import LoginForm from './components/LoginForm'
-import Signup from './components/Signup'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import BuyNow from './pages/BuyNow';
+import AddToCart from './pages/AddToCart';
+import Billing from './pages/Billing';
 
 function App() {
-
-
   return (
-    <>
-      <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path='/' element= {<Home/>}/>
-        <Route path='/login' element= {<LoginForm/>}/>
-        <Route path='/register' element= {<Signup/>}/>
-        
+        <Route path="/" element={<Home />} />
+        <Route path="/buynow" element={<BuyNow />} />
+        <Route path="/addtocart" element={<AddToCart />} />
+        <Route path="/billing" element={<Billing />} />
       </Routes>
-      </BrowserRouter>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
