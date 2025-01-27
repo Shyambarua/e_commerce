@@ -1,12 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import Signup from "./Signup";
+import Logo from '../assets/logo1.png';
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openCategory, setOpenCategory] = useState(null);
+
   const categories = [
     "New & Featured",
     "Men",
@@ -23,6 +27,10 @@ const Navbar = () => {
     "Hoodies and Sweatshirts",
     "Jackets and Gilets",
   ];
+
+  const toggleCategory = (category) => {
+    setOpenCategory(openCategory === category ? null : category);
+  };
 
   return (
     <>
@@ -47,17 +55,26 @@ const Navbar = () => {
       </div>
 
       {/* Navbar Header */}
-      <header className="flex flex-wrap justify-between items-center px-5 py-3 border-b">
+      <header className="flex justify-between items-center px-5 py-3 border-b">
+        {/* Logo */}
         <Link to="/">
           <img
-            src="/assets/logo1.png"
+            src={Logo}
             alt="Buyzy Logo"
             className="w-20 h-auto"
           />
         </Link>
 
-        {/* Categories */}
-        <div className="hidden lg:flex space-x-6">
+        {/* Hamburger Icon */}
+        <button
+          className="lg:hidden text-2xl"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        {/* Desktop Navbar Links */}
+        <nav className="hidden lg:flex space-x-6">
           {categories.map((category) => (
             <div className="group relative" key={category}>
               <button className="text-lg font-medium hover:text-blue-500">
@@ -69,7 +86,10 @@ const Navbar = () => {
                     <h3 className="text-sm font-semibold">Shoe</h3>
                     <ul>
                       {shoeItems.map((item) => (
-                        <li key={item} className="py-1 text-sm hover:text-blue-500">
+                        <li
+                          key={item}
+                          className="py-1 text-sm hover:text-blue-500"
+                        >
                           <Link to={`/categories/shoes/${item.toLowerCase()}`}>
                             {item}
                           </Link>
@@ -81,8 +101,13 @@ const Navbar = () => {
                     <h3 className="text-sm font-semibold">Clothing</h3>
                     <ul>
                       {clothingItems.map((item) => (
-                        <li key={item} className="py-1 text-sm hover:text-blue-500">
-                          <Link to={`/categories/clothing/${item.toLowerCase()}`}>
+                        <li
+                          key={item}
+                          className="py-1 text-sm hover:text-blue-500"
+                        >
+                          <Link
+                            to={`/categories/clothing/${item.toLowerCase()}`}
+                          >
                             {item}
                           </Link>
                         </li>
@@ -93,16 +118,16 @@ const Navbar = () => {
               </div>
             </div>
           ))}
-        </div>
+        </nav>
 
         {/* Search & Icons */}
-        <div className="flex items-center space-x-4 w-full lg:w-auto mt-3 lg:mt-0">
-          <div className="flex items-center border rounded-full px-3 py-1 w-full lg:w-auto">
+        <div className="hidden lg:flex items-center space-x-4">
+          <div className="flex items-center border rounded-full px-3 py-1">
             <FaSearch className="text-gray-500 text-lg" />
             <input
               type="text"
               placeholder="Search..."
-              className="ml-2 w-full lg:w-auto outline-none"
+              className="ml-2 outline-none"
             />
           </div>
           <CiHeart className="text-2xl" />
@@ -110,17 +135,79 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Promo Section */}
-      <div className="text-center py-6 bg-gray-100">
-        <h2 className="text-xl font-semibold">
-          Move, Shop, Customise & Celebrate With Us.
-        </h2>
-        <p className="text-sm">
-          No matter what you feel like doing today, it's better as a Member.
-        </p>
-        <Link to="/join" className="text-lg underline hover:text-blue-500">
-          Join Us
-        </Link>
+      {/* Mobile Menu */}
+      <div
+        className={`${
+          isMenuOpen ? "block" : "hidden"
+        } lg:hidden flex flex-col bg-gray-50 shadow-md`}
+      >
+        <div className="flex flex-col space-y-3 px-5 py-4">
+          {categories.map((category) => (
+            <div key={category}>
+              <button
+                className="flex justify-between items-center w-full text-lg font-medium py-2 hover:text-blue-500"
+                onClick={() => toggleCategory(category)}
+              >
+                {category}
+                <span>
+                  {openCategory === category ? <FaTimes /> : <FaBars />}
+                </span>
+              </button>
+              {openCategory === category && (
+                <div className="pl-5">
+                  <div>
+                    <h3 className="text-sm font-semibold">Shoe</h3>
+                    <ul>
+                      {shoeItems.map((item) => (
+                        <li
+                          key={item}
+                          className="py-1 text-sm hover:text-blue-500"
+                        >
+                          <Link to={`/categories/shoes/${item.toLowerCase()}`}>
+                            {item}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold mt-3">Clothing</h3>
+                    <ul>
+                      {clothingItems.map((item) => (
+                        <li
+                          key={item}
+                          className="py-1 text-sm hover:text-blue-500"
+                        >
+                          <Link
+                            to={`/categories/clothing/${item.toLowerCase()}`}
+                          >
+                            {item}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Search & Icons */}
+        <div className="flex flex-col items-center px-5 py-4 space-y-3 border-t">
+          <div className="flex items-center border rounded-full px-3 py-1 w-full">
+            <FaSearch className="text-gray-500 text-lg" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="ml-2 w-full outline-none"
+            />
+          </div>
+          <div className="flex items-center space-x-4">
+            <CiHeart className="text-2xl" />
+            <BsCart3 className="text-2xl" />
+          </div>
+        </div>
       </div>
     </>
   );
