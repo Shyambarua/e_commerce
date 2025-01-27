@@ -45,7 +45,7 @@ const LoginForm = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("after login: ", responseData);
-        // toast.success("Registration Successful");
+        toast.success("Registration Successful");
         saveTokenInLocalStr(responseData.token);
         navigate("/");
       }

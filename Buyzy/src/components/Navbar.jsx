@@ -1,212 +1,127 @@
-import "./Navbar.css";
+import React from "react";
 import { CiHeart } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
-import logo from '../assets/logo1.png'
+import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import Signup from "./Signup";
 
-
 const Navbar = () => {
+  const categories = [
+    "New & Featured",
+    "Men",
+    "Women",
+    "Kids",
+    "Customise",
+  ];
+
+  const shoeItems = ["Sneaker", "Sports Shoe", "Casual Shoe"];
+  const clothingItems = [
+    "Tops and T-Shirts",
+    "Shorts",
+    "Pants and Leggings",
+    "Hoodies and Sweatshirts",
+    "Jackets and Gilets",
+  ];
+
   return (
     <>
-      <div className="main-head">
-        <a href="">Buyzy</a>
-        <div className="main-link">
-          <a href="">Find a Store</a> |<a href="">Help</a> |
-          <button className="text-[15px] ">
-            <Signup/>
-          </button> | 
-          <button className="text-[15px] ">
-            <LoginForm/>
-          </button>
+      {/* Top Bar */}
+      <div className="flex justify-between px-5 py-2 bg-gray-100 text-sm">
+        <Link to="/" className="text-lg font-bold">
+          Buyzy
+        </Link>
+        <div className="hidden sm:flex items-center space-x-3">
+          <Link to="/store" className="hover:text-blue-500">
+            Find a Store
+          </Link>
+          <span>|</span>
+          <Link to="/help" className="hover:text-blue-500">
+            Help
+          </Link>
+          <span>|</span>
+          <Signup />
+          <span>|</span>
+          <LoginForm />
         </div>
       </div>
 
+      {/* Navbar Header */}
+      <header className="flex flex-wrap justify-between items-center px-5 py-3 border-b">
+        <Link to="/">
+          <img
+            src="/assets/logo1.png"
+            alt="Buyzy Logo"
+            className="w-20 h-auto"
+          />
+        </Link>
 
-      <header className="head">
-      <a href="#"><img src={logo} alt="" className=" w-20 h-12" /></a>
-      <div className="navbar">
-        <div className="dropdown">
-          <button className="dropbtn">New & Featured</button>
-          <div className="dropdown-content">
-            <div className="row">
-              <div className="column">
-                <h3>Shoe</h3>
-                <a href="#">Sneaker</a>
-                <a href="#">Sports Shoe</a>
-                <a href="#">Casual Shoe</a>
-              </div>
-              <div className="column">
-                <h3>Clothing</h3>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops and T-Shirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Pants and Leggings</a>
-                <a href="#">Hoodies and Swetshirts</a>
-                <a href="#">Jackets and Gilets</a>
-              </div>
-              <div className="column">
-                <h3>Shop By Sport</h3>
-                <a href="#">Running</a>
-                <a href="#">Basketball</a>
-                <a href="#">Football</a>
-                <a href="#">Golf</a>
-                <a href="#">Tennis</a>
-                <a href="#">Gym and Training</a>
-                <a href="#">Cricket</a>
-              </div>
-              <div className="column">
-                <h3>Acessories and Equipment</h3>
-                <a href="#">All Accessories and Equipment</a>
-                <a href="#">Bags and Backpacks</a>
-                <a href="#">Socks</a>
-                <a href="#">Hats and Headwear</a>
-                <a href="#">Chains</a>
-                <a href="#">Watch</a>
+        {/* Categories */}
+        <div className="hidden lg:flex space-x-6">
+          {categories.map((category) => (
+            <div className="group relative" key={category}>
+              <button className="text-lg font-medium hover:text-blue-500">
+                {category}
+              </button>
+              <div className="hidden group-hover:block absolute top-full left-0 bg-white shadow-md w-72 z-10">
+                <div className="p-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <h3 className="text-sm font-semibold">Shoe</h3>
+                    <ul>
+                      {shoeItems.map((item) => (
+                        <li key={item} className="py-1 text-sm hover:text-blue-500">
+                          <Link to={`/categories/shoes/${item.toLowerCase()}`}>
+                            {item}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold">Clothing</h3>
+                    <ul>
+                      {clothingItems.map((item) => (
+                        <li key={item} className="py-1 text-sm hover:text-blue-500">
+                          <Link to={`/categories/clothing/${item.toLowerCase()}`}>
+                            {item}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
-        <div className="dropdown">
-          <button className="dropbtn">Men</button>
-          <div className="dropdown-content">
-            <div className="row">
-              <div className="column">
-                <h3>Shoe</h3>
-                <a href="#">Sneaker</a>
-                <a href="#">Sports Shoe</a>
-                <a href="#">Casual Shoe</a>
-              </div>
-              <div className="column">
-                <h3>Clothing</h3>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops and T-Shirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Pants and Leggings</a>
-                <a href="#">Hoodies and Swetshirts</a>
-                <a href="#">Jackets and Gilets</a>
-              </div>
-              <div className="column">
-                <h3>Shop By Sport</h3>
-                <a href="#">Running</a>
-                <a href="#">Basketball</a>
-                <a href="#">Football</a>
-                <a href="#">Golf</a>
-                <a href="#">Tennis</a>
-                <a href="#">Gym and Training</a>
-                <a href="#">Cricket</a>
-              </div>
-              <div className="column">
-                <h3>Acessories and Equipment</h3>
-                <a href="#">All Accessories and Equipment</a>
-                <a href="#">Bags and Backpacks</a>
-                <a href="#">Socks</a>
-                <a href="#">Hats and Headwear</a>
-                <a href="#">Chains</a>
-                <a href="#">Watch</a>
-              </div>
-            </div>
+        {/* Search & Icons */}
+        <div className="flex items-center space-x-4 w-full lg:w-auto mt-3 lg:mt-0">
+          <div className="flex items-center border rounded-full px-3 py-1 w-full lg:w-auto">
+            <FaSearch className="text-gray-500 text-lg" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="ml-2 w-full lg:w-auto outline-none"
+            />
           </div>
+          <CiHeart className="text-2xl" />
+          <BsCart3 className="text-2xl" />
         </div>
+      </header>
 
-        <div className="dropdown">
-          <button className="dropbtn">Women</button>
-          <div className="dropdown-content">
-            <div className="row">
-              <div className="column">
-                <h3>Shoe</h3>
-                <a href="#">Sneaker</a>
-                <a href="#">Sports Shoe</a>
-                <a href="#">Casual Shoe</a>
-              </div>
-              <div className="column">
-                <h3>Clothing</h3>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops and T-Shirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Pants and Leggings</a>
-                <a href="#">Hoodies and Swetshirts</a>
-                <a href="#">Jackets and Gilets</a>
-              </div>
-              <div className="column">
-                <h3>Shop By Sport</h3>
-                <a href="#">Running</a>
-                <a href="#">Basketball</a>
-                <a href="#">Football</a>
-                <a href="#">Golf</a>
-                <a href="#">Tennis</a>
-                <a href="#">Gym and Training</a>
-                <a href="#">Cricket</a>
-              </div>
-              <div className="column">
-                <h3>Acessories and Equipment</h3>
-                <a href="#">All Accessories and Equipment</a>
-                <a href="#">Bags and Backpacks</a>
-                <a href="#">Socks</a>
-                <a href="#">Hats and Headwear</a>
-                <a href="#">Chains</a>
-                <a href="#">Watch</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="dropdown">
-          <button className="dropbtn">Kids</button>
-          <div className="dropdown-content">
-            <div className="row">
-              <div className="column">
-                <h3>Shoe</h3>
-                <a href="#">Sneaker</a>
-                <a href="#">Sports Shoe</a>
-                <a href="#">Casual Shoe</a>
-              </div>
-              <div className="column">
-                <h3>Clothing</h3>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops and T-Shirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Pants and Leggings</a>
-                <a href="#">Hoodies and Swetshirts</a>
-                <a href="#">Jackets and Gilets</a>
-              </div>
-              <div className="column">
-                <h3>Shop By Sport</h3>
-                <a href="#">Running</a>
-                <a href="#">Basketball</a>
-                <a href="#">Football</a>
-                <a href="#">Golf</a>
-                <a href="#">Tennis</a>
-                <a href="#">Gym and Training</a>
-                <a href="#">Cricket</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="dropdown">
-          <a href="https://www.bewakoof.com/custom-tshirts" className="dropbtn">
-            Customise
-          </a>
-        </div>
+      {/* Promo Section */}
+      <div className="text-center py-6 bg-gray-100">
+        <h2 className="text-xl font-semibold">
+          Move, Shop, Customise & Celebrate With Us.
+        </h2>
+        <p className="text-sm">
+          No matter what you feel like doing today, it's better as a Member.
+        </p>
+        <Link to="/join" className="text-lg underline hover:text-blue-500">
+          Join Us
+        </Link>
       </div>
-      <div className="right-nav">
-        <div className="search">
-          <FaSearch className=" text-gray-600 text-2xl  "/>
-          <input type="search" placeholder="Search...." />
-        </div>
-        <a href=""><CiHeart className="text-3xl text-black" /></a>
-        <a href=""><BsCart3 className="text-3xl text-black" /></a>
-      </div>
-    </header>
-
-    
-    <div className="bottom-nav">
-        <h2>Move, Shop, Customise & Celebrate With Us.</h2>
-        <p>No matter what you feel like doing today, Its better as a Member.</p>
-        <a href="Register/register.html">Join Us.</a>
-    </div>
     </>
   );
 };
