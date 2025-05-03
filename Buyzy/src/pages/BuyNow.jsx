@@ -1,9 +1,10 @@
-import React from 'react';
+import Navbar from '../components/Navbar';
 
 const ProductPage = () => {
   return (
-    <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="sm:px-6 lg:px-8">
+      <Navbar  />
+      <div className="max-w-7xl my-8 mx-auto">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12">
           {/* Image Section */}
           <div className="relative">
