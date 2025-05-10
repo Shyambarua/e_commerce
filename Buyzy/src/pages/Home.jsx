@@ -194,7 +194,7 @@ const Home = () => {
                 </h5>
                 <div className="flex gap-3 mt-3">
                   <button
-                    onClick={() => handleBuyNow(item.id)}
+                    onClick={() => handleBuyNow(index + 1)}
                     className="px-4 py-2 bg-blue-500 text-white rounded-md hover:shadow-lg"
                   >
                     Buy Now
